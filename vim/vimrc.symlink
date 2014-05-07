@@ -1,3 +1,13 @@
+silent function! OS()
+  if has('win16') || has('win32') || has('win64')
+    return 'win'
+  elseif has('unix') && system('uname')=~'Darwin'
+    return 'mac'
+  else
+    return 'linux'
+  endif
+endfunction
+
 "NeoBundle Scripts-----------------------------
 if has('vim_starting')
   set nocompatible               " Be iMproved
@@ -42,6 +52,11 @@ inoremap <C-U> <C-G>u<C-U>
 
 " Use the hybrid theme
 set t_Co=256
+if OS() == 'linux'
+  let g:hybrid_use_Xresources = 1
+elseif OS() == 'mac'
+  let g:hybrid_use_iTerm_colors = 1
+endif
 colorscheme hybrid
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
@@ -54,8 +69,8 @@ set backspace=indent,eol,start
 set ttyfast
 " Add the g flag to search/replace by default
 set gdefault
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
+" Use UTF-8
+set encoding=utf-8 fileencoding=utf-8 termencoding=utf-8
 " Change mapleader
 let mapleader=","
 " Centralize backups, swapfiles and undo history
@@ -139,6 +154,10 @@ nnoremap <Right> <C-w>l
 nnoremap <Left> <C-w>h
 nnoremap <Up> <C-w>k
 nnoremap <Down> <C-w>j
+inoremap <Right> <nop>
+inoremap <Left> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
 
 " redraw only when we need to
 set lazyredraw
@@ -342,3 +361,6 @@ set winminheight=0
 
 " Making it so ; works like : for commands
 nnoremap ; :
+
+" turn off stupid fucking alt shortcuts
+set winaltkeys=no
