@@ -9,7 +9,9 @@ silent function! OS()
 endfunction
 
 if OS() == 'mac'
-    set guifont=Source\ Code\ Pro:h14
+  set guifont=Source\ Code\ Pro:h14
+elseif OS() == 'win'
+  set guifont=Source\ Code\ Pro:h11
 endif
 set guioptions-=m
 set guioptions-=T

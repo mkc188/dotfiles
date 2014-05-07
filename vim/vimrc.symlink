@@ -77,7 +77,7 @@ let mapleader=","
 set backupdir=~/.vim/backup
 set directory=~/.vim/swap
 if exists("&undodir")
-    set undodir=~/.vim/undo
+  set undodir=~/.vim/undo
 endif
 set backup            " backups are nice ...
 set undofile          " so is persistent undo ...
@@ -115,11 +115,11 @@ set scrolloff=3
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    :%s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
+  let save_cursor = getpos(".")
+  let old_query = getreg('/')
+  :%s/\s\+$//e
+  call setpos('.', save_cursor)
+  call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
